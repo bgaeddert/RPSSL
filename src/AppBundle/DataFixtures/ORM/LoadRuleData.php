@@ -7,9 +7,15 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadRuleData extends AbstractFixture implements FixtureInterface
 {
+    /**
+     * All the winning combinations of gestures
+     * and their victory description
+     *
+     * @param ObjectManager $manager
+     */
     public function load( ObjectManager $manager )
     {
-
+        // References from LoadRulesData Fixture
         $rockGesture     = $this->getReference( 'rock-gesture' );
         $paperGesture    = $this->getReference( 'paper-gesture' );
         $scissorsGesture = $this->getReference( 'scissors-gesture' );
@@ -89,6 +95,11 @@ class LoadRuleData extends AbstractFixture implements FixtureInterface
         $manager->flush();
     }
 
+    /**
+     * Order in which this fixture is applied
+     *
+     * @return int
+     */
     public function getOrder()
     {
         return 2;

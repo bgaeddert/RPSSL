@@ -13,4 +13,29 @@ use Doctrine\ORM\EntityRepository;
  */
 class RuleRepository extends EntityRepository
 {
+    /**
+     * Only winning rules are stored in the rules table.
+     *
+     * We find the rule that has both provided gestures.
+     *
+     * @param \AppBundle\Entity\Gesture $gesture_a
+     * @param \AppBundle\Entity\Gesture $gesture_b
+     * @return \AppBundle\Entity\Rule
+     */
+    public function findByGestures( Gesture $gesture_a, Gesture $gesture_b){
+        $rules = $this->getEntityManager()
+            ->createQuery(
+                'SELECT r FROM AppBundle:Rule r WHERE r.gesture_a = :gesture_a and r.gesture_b = :gesture_b'
+            )
+            ->setParameters(array(
+                'gesture_a' => $gesture_a,
+                'gesture_b' => $gesture_b,
+            ))
+            ->getResult();
+
+        if(count($rules))
+            return $rules[0];
+
+        return false;
+    }
 }

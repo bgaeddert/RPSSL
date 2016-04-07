@@ -42,6 +42,11 @@ class LoadGestureData extends AbstractFixture implements FixtureInterface
         $manager->flush();
     }
 
+    /**
+     * Order in which this fixture is applied
+     *
+     * @return int
+     */
     public function getOrder()
     {
         return 2;
