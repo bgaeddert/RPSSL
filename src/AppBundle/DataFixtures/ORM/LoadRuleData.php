@@ -9,18 +9,18 @@ class LoadRuleData extends AbstractFixture implements FixtureInterface
 {
     /**
      * All the winning combinations of gestures
-     * and their victory description
+     * and their victory description.
      *
      * @param ObjectManager $manager
      */
-    public function load( ObjectManager $manager )
+    public function load(ObjectManager $manager)
     {
         // References from LoadRulesData Fixture
-        $rockGesture     = $this->getReference( 'rock-gesture' );
-        $paperGesture    = $this->getReference( 'paper-gesture' );
-        $scissorsGesture = $this->getReference( 'scissors-gesture' );
-        $lizardGesture   = $this->getReference( 'lizard-gesture' );
-        $spockGesture    = $this->getReference( 'spock-gesture' );
+        $rockGesture = $this->getReference('rock-gesture');
+        $paperGesture = $this->getReference('paper-gesture');
+        $scissorsGesture = $this->getReference('scissors-gesture');
+        $lizardGesture = $this->getReference('lizard-gesture');
+        $spockGesture = $this->getReference('spock-gesture');
 
         // Rock Crushes Scissors
         $rule = new Rule();
@@ -96,7 +96,7 @@ class LoadRuleData extends AbstractFixture implements FixtureInterface
     }
 
     /**
-     * Order in which this fixture is applied
+     * Order in which this fixture is applied.
      *
      * @return int
      */

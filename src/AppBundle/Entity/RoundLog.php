@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * RoundLog
+ * RoundLog.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\RoundLogRepository")
@@ -25,7 +25,7 @@ class RoundLog
     private $comp_gesture;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -34,17 +34,16 @@ class RoundLog
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="human_won", type="boolean")
      */
     private $humanWon;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -52,9 +51,10 @@ class RoundLog
     }
 
     /**
-     * Set humanWon
+     * Set humanWon.
      *
-     * @param boolean $humanWon
+     * @param bool $humanWon
+     *
      * @return RoundLog
      */
     public function setHumanWon($humanWon)
@@ -65,9 +65,9 @@ class RoundLog
     }
 
     /**
-     * Get humanWon
+     * Get humanWon.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getHumanWon()
     {
@@ -75,9 +75,10 @@ class RoundLog
     }
 
     /**
-     * Set human_gesture
+     * Set human_gesture.
      *
      * @param \AppBundle\Entity\Gesture $humanGesture
+     *
      * @return RoundLog
      */
     public function setHumanGesture(\AppBundle\Entity\Gesture $humanGesture = null)
@@ -88,9 +89,9 @@ class RoundLog
     }
 
     /**
-     * Get human_gesture
+     * Get human_gesture.
      *
-     * @return \AppBundle\Entity\Gesture 
+     * @return \AppBundle\Entity\Gesture
      */
     public function getHumanGesture()
     {
@@ -98,9 +99,10 @@ class RoundLog
     }
 
     /**
-     * Set comp_gesture
+     * Set comp_gesture.
      *
      * @param \AppBundle\Entity\Gesture $compGesture
+     *
      * @return RoundLog
      */
     public function setCompGesture(\AppBundle\Entity\Gesture $compGesture = null)
@@ -111,9 +113,9 @@ class RoundLog
     }
 
     /**
-     * Get comp_gesture
+     * Get comp_gesture.
      *
-     * @return \AppBundle\Entity\Gesture 
+     * @return \AppBundle\Entity\Gesture
      */
     public function getCompGesture()
     {

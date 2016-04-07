@@ -43,7 +43,7 @@ class LoadGestureData extends AbstractFixture implements FixtureInterface
     }
 
     /**
-     * Order in which this fixture is applied
+     * Order in which this fixture is applied.
      *
      * @return int
      */

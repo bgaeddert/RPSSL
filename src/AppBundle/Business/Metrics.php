@@ -1,6 +1,6 @@
 <?php
-namespace AppBundle\Business;
 
+namespace AppBundle\Business;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -9,8 +9,8 @@ class Metrics
     private $om;
 
     /**
-     *
      * Metrics constructor.
+     *
      * @param ObjectManager $om
      */
     public function __construct(ObjectManager $om)
@@ -18,9 +18,9 @@ class Metrics
         $this->om = $om;
     }
 
-    public function get(){
-
-        $raw = $this->om->getConnection()->prepare( "
+    public function get()
+    {
+        $raw = $this->om->getConnection()->prepare("
                   SELECT
                       count(*)        total,
                       sum(CASE WHEN human_won = '1' THEN 1 ELSE 0 END) human_win_count,
@@ -38,16 +38,16 @@ class Metrics
                       sum(CASE WHEN comp_gesture_id = '4' THEN 1 ELSE 0 END) comp_spock_count,
                       sum(CASE WHEN comp_gesture_id = '5' THEN 1 ELSE 0 END) comp_lizard_count
                 FROM round_log;
-        " );
+        ");
 
         $raw->execute();
 
-        $metrics =  $raw->fetchAll();
+        $metrics = $raw->fetchAll();
 
-        if(count($metrics))
+        if (count($metrics)) {
             return $metrics[0];
+        }
 
         return false;
     }
-
 }

@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * RoundLog
+ * RoundLog.
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="AppBundle\Entity\RuleRepository")
@@ -25,7 +25,7 @@ class Rule
     private $gesture_b;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -34,17 +34,16 @@ class Rule
     private $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="description", type="string")
      */
     private $description;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -52,9 +51,10 @@ class Rule
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Rule
      */
     public function setDescription($description)
@@ -65,9 +65,9 @@ class Rule
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -75,9 +75,10 @@ class Rule
     }
 
     /**
-     * Set gesture_a
+     * Set gesture_a.
      *
      * @param \AppBundle\Entity\Gesture $gestureA
+     *
      * @return Rule
      */
     public function setGestureA(\AppBundle\Entity\Gesture $gestureA = null)
@@ -88,9 +89,9 @@ class Rule
     }
 
     /**
-     * Get gesture_a
+     * Get gesture_a.
      *
-     * @return \AppBundle\Entity\Gesture 
+     * @return \AppBundle\Entity\Gesture
      */
     public function getGestureA()
     {
@@ -98,9 +99,10 @@ class Rule
     }
 
     /**
-     * Set gesture_b
+     * Set gesture_b.
      *
      * @param \AppBundle\Entity\Gesture $gestureB
+     *
      * @return Rule
      */
     public function setGestureB(\AppBundle\Entity\Gesture $gestureB = null)
@@ -111,9 +113,9 @@ class Rule
     }
 
     /**
-     * Get gesture_b
+     * Get gesture_b.
      *
-     * @return \AppBundle\Entity\Gesture 
+     * @return \AppBundle\Entity\Gesture
      */
     public function getGestureB()
     {
