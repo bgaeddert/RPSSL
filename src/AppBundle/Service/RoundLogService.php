@@ -22,7 +22,7 @@ class RoundLogService
         $this->round_log_repository = $round_log_repository;
     }
 
-    public function log(GameService $game)
+    public function log( RoundService $game)
     {
         $round_log = new RoundLog();
         $round_log->setHumanGesture($game->getHumanGesture());

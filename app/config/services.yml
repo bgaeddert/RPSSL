@@ -21,8 +21,8 @@ services:
     arguments:
       - AppBundle\Entity\RoundLog
 
-  game_service:
-      class: AppBundle\Service\GameService
+  round_service:
+      class: AppBundle\Service\RoundService
       arguments:
         - "@gesture_repository"
         - "@rule_repository"

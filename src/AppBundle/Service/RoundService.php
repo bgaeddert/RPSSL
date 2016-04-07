@@ -6,7 +6,7 @@ use AppBundle\Entity\Gesture;
 use AppBundle\Entity\GestureRepository;
 use AppBundle\Entity\RuleRepository;
 
-class GameService
+class RoundService
 {
     /**
      * @var GestureRepository
@@ -52,17 +52,16 @@ class GameService
 
     /**
      * @param $gesture_options
-     * @param $human_gesture_id
-     *
+     * @param Gesture $human_gesture
      * @return $this
      */
-    public function play($gesture_options, $human_gesture_id)
+    public function play($gesture_options, Gesture $human_gesture)
     {
         // Default result
 
         $this->result_statement = 'Game ended in a tie';
 
-        $this->human_gesture = $this->gesture_repository->find($human_gesture_id);
+        $this->human_gesture = $this->gesture_repository->find($human_gesture->getId());
         $this->computer_gesture = $gesture_options[ array_rand($gesture_options, 1) ];
 
         $human_wins = $this->rule_repository
