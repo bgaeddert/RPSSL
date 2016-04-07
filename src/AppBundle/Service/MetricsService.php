@@ -1,10 +1,10 @@
 <?php
 
-namespace AppBundle\Business;
+namespace AppBundle\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-class Metrics
+class MetricsService
 {
     private $om;
 

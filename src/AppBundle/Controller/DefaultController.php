@@ -2,9 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Business\Game;
-use AppBundle\Business\Metrics;
-use AppBundle\Business\RoundLogger;
+use AppBundle\Service\GameService;
+use AppBundle\Service\MetricsService;
+use AppBundle\Service\RoundLogService;
 use AppBundle\Entity\RoundLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,13 +20,8 @@ class DefaultController extends Controller
         // INPUT
         $human_gesture_id = intval($request->request->get('gesture_id'));
 
-        // Repositories
-        $gesture_repository = $this->getDoctrine()->getRepository('AppBundle:Gesture');
-        $rule_repository = $this->getDoctrine()->getRepository('AppBundle:Rule');
-        $round_log_repository = $this->getDoctrine()->getRepository('AppBundle:RoundLog');
-
         // Get all Gestures from DataBase
-        $gesture_options = $gesture_repository->findAll();
+        $gesture_options = $this->get('gesture_service')->getOptions();
 
         // init load setting
         $response_array = [
@@ -38,19 +33,17 @@ class DefaultController extends Controller
         ];
 
         if ($human_gesture_id) {
-            $game = (new Game($gesture_repository, $rule_repository))->play($gesture_options, $human_gesture_id);
+            $game = $this->get('game_service')->play($gesture_options, $human_gesture_id);
 
             $response_array[ 'human_gesture' ] = $game->getHumanGesture();
             $response_array[ 'computer_gesture' ] = $game->getComputerGesture();
             $response_array[ 'result_statement' ] = $game->getResultStatement();
 
-            (new RoundLogger($round_log_repository))->log($game);
+            $this->get('round_logger_service')->log($game);
         }
 
         // METRICS
-        $om = $this->getDoctrine()->getManager();
-        $metrics = (new Metrics($om))->get();
-        $response_array[ 'metrics' ] = $metrics;
+        $response_array[ 'metrics' ] = $this->get('metrics_service')->get();
 
         return $this->render('default/index.html.twig', $response_array);
     }

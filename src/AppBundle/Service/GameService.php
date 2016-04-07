@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Business;
+namespace AppBundle\Service;
 
 use AppBundle\Entity\Gesture;
 use AppBundle\Entity\GestureRepository;
 use AppBundle\Entity\RuleRepository;
 
-class Game
+class GameService
 {
     /**
      * @var GestureRepository

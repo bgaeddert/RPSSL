@@ -4,6 +4,40 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  gesture_repository:
+    class: Doctrine\ORM\EntityRepository
+    factory: ["@doctrine.orm.entity_manager", getRepository]
+    arguments:
+      - AppBundle\Entity\Gesture
+  rule_repository:
+    class: Doctrine\ORM\EntityRepository
+    factory: ["@doctrine.orm.entity_manager", getRepository]
+    arguments:
+      - AppBundle\Entity\Rule
+
+  round_log_repository:
+    class: Doctrine\ORM\EntityRepository
+    factory: ["@doctrine.orm.entity_manager", getRepository]
+    arguments:
+      - AppBundle\Entity\RoundLog
+
+  game_service:
+      class: AppBundle\Service\GameService
+      arguments:
+        - "@gesture_repository"
+        - "@rule_repository"
+
+  round_logger_service:
+        class: AppBundle\Service\RoundLogService
+        arguments:
+          - "@round_log_repository"
+
+  gesture_service:
+          class: AppBundle\Service\GestureService
+          arguments:
+            - "@gesture_repository"
+
+  metrics_service:
+            class: AppBundle\Service\MetricsService
+            arguments:
+              - "@doctrine.orm.entity_manager"

@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Business;
+namespace AppBundle\Service;
 
 use AppBundle\Entity\RoundLog;
 use AppBundle\Entity\RoundLogRepository;
 
-class RoundLogger
+class RoundLogService
 {
     /**
      * @var RoundLogRepository
@@ -22,7 +22,7 @@ class RoundLogger
         $this->round_log_repository = $round_log_repository;
     }
 
-    public function log(Game $game)
+    public function log(GameService $game)
     {
         $round_log = new RoundLog();
         $round_log->setHumanGesture($game->getHumanGesture());
