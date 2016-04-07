@@ -32,6 +32,11 @@ class Game
      */
     private $result_statement;
 
+    /**
+     * @var boolean
+     */
+    private $human_won = false;
+
 
     /**
      * Game constructor.
@@ -51,7 +56,9 @@ class Game
      */
     public function play( $gesture_options, $human_gesture_id )
     {
-        $this->result_statement = "Game end in a tie";
+        // Default result
+
+        $this->result_statement = "Game ended in a tie";
 
         $this->human_gesture    = $this->gesture_repository->find( $human_gesture_id );
         $this->computer_gesture = $gesture_options[ array_rand( $gesture_options, 1 ) ];
@@ -59,13 +66,11 @@ class Game
         $human_wins = $this->rule_repository
             ->findByGestures( $this->human_gesture, $this->computer_gesture );
 
-        // Default result
-
         // Return if human wins
         if ( $human_wins )
         {
             $this->result_statement = "You won - {$human_wins->getDescription()}";
-
+            $this->human_won = true;
             return $this;
         }
 
@@ -102,6 +107,14 @@ class Game
     public function getResultStatement()
     {
         return $this->result_statement;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function didHumanWin()
+    {
+        return $this->human_won;
     }
 
 }
