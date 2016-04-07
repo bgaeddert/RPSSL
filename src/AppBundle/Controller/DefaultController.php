@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Business\Game;
+use AppBundle\Business\Metrics;
 use AppBundle\Business\RoundLogger;
 use AppBundle\Entity\RoundLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -34,6 +35,7 @@ class DefaultController extends Controller
             "human_gesture"    => null,
             "computer_gesture" => null,
             "result_statement" => 'Ready player one.',
+            "metrics"          => null,
         ];
 
         if ( $human_gesture_id )
@@ -44,8 +46,13 @@ class DefaultController extends Controller
             $response_array[ "computer_gesture" ] = $game->getComputerGesture();
             $response_array[ "result_statement" ] = $game->getResultStatement();
 
-            (new RoundLogger($round_log_repository))->log($game);
+            ( new RoundLogger( $round_log_repository ) )->log( $game );
         }
+
+        // METRICS
+        $metrics = ( new Metrics() )->get( $this->getDoctrine()->getManager()->getConnection() );
+        $response_array[ "metrics" ]    = $metrics;
+
 
         return $this->render( 'default/index.html.twig', $response_array );
     }

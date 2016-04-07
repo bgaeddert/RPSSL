@@ -8,16 +8,16 @@
                 <hr>
             </div>
 
-            <div id="prev-results">
+            <div id="prev-results" class="text-center">
                 {% if human_gesture | length %}
                     <p>You played {{ human_gesture.name }}</p>
                     <p>Computer played {{ computer_gesture.name }}</p>
                 {% endif %}
-                <h2 class="text-center">{{ result_statement }}</h2>
+                <h2>{{ result_statement }}</h2>
                 <hr>
             </div>
 
-            <div id="gesture-select">
+            <div id="gesture-select" class="text-center">
                 <h2 class="text-center">Choose one</h2>
                 <form action="/" method="post">
                     {% for gesture_option in gesture_options %}
@@ -38,9 +38,30 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>key</td>
-                            <td>value</td>
+                            <td>Wins</td>
+                            <td>{{ metrics.human_win_count }}</td>
                         </tr>
+                        <tr>
+                            <td>Rock</td>
+                            <td>{{ metrics.human_rock_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Paper</td>
+                            <td>{{ metrics.human_paper_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Scissors</td>
+                            <td>{{ metrics.human_scissors_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Lizard</td>
+                            <td>{{ metrics.human_lizard_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Spock</td>
+                            <td>{{ metrics.human_spock_count }}</td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -54,8 +75,28 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>key</td>
-                            <td>value</td>
+                            <td>Wins</td>
+                            <td>{{ metrics.comp_win_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Rock</td>
+                            <td>{{ metrics.comp_rock_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Paper</td>
+                            <td>{{ metrics.comp_paper_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Scissors</td>
+                            <td>{{ metrics.comp_scissors_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Lizard</td>
+                            <td>{{ metrics.comp_lizard_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Spock</td>
+                            <td>{{ metrics.comp_spock_count }}</td>
                         </tr>
                         </tbody>
                     </table>
