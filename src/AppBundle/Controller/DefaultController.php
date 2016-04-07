@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Business\Game;
+use AppBundle\Business\RoundLogger;
+use AppBundle\Entity\RoundLog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,8 +21,9 @@ class DefaultController extends Controller
         $human_gesture_id = intval( $request->request->get( 'gesture_id' ) );
 
         // Repositories
-        $gesture_repository = $this->getDoctrine()->getRepository( 'AppBundle:Gesture' );
-        $rule_repository    = $this->getDoctrine()->getRepository( 'AppBundle:Rule' );
+        $gesture_repository   = $this->getDoctrine()->getRepository( 'AppBundle:Gesture' );
+        $rule_repository      = $this->getDoctrine()->getRepository( 'AppBundle:Rule' );
+        $round_log_repository = $this->getDoctrine()->getRepository( 'AppBundle:RoundLog' );
 
         // Get all Gestures from DataBase
         $gesture_options = $gesture_repository->findAll();
@@ -40,6 +43,8 @@ class DefaultController extends Controller
             $response_array[ "human_gesture" ]    = $game->getHumanGesture();
             $response_array[ "computer_gesture" ] = $game->getComputerGesture();
             $response_array[ "result_statement" ] = $game->getResultStatement();
+
+            (new RoundLogger($round_log_repository))->log($game);
         }
 
         return $this->render( 'default/index.html.twig', $response_array );
