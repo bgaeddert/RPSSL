@@ -9,6 +9,9 @@
             </div>
 
             <div id="prev-results">
+                {% if human_gesture | length %}
+                    You played {{ human_gesture.name }}
+                {% endif %}
                 <h2 class="text-center">Who won and why</h2>
                 <hr>
             </div>
@@ -16,8 +19,8 @@
             <div id="gesture-select">
                 <h2 class="text-center">Choose one</h2>
                 <form action="/" method="post">
-                    {% for gesture in gestures %}
-                        <button type="submit" name="gesture_id" value="{{ gesture.id }}">{{ gesture.name|escape|capitalize }}</button>
+                    {% for gesture_option in gesture_options %}
+                        <button type="submit" name="gesture_id" value="{{ gesture_option.id }}">{{ gesture_option.name|escape|capitalize }}</button>
                     {% endfor %}
                 </form>
                 <hr>
