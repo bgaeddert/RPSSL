@@ -13,6 +13,13 @@
                     <p>You played {{ human_gesture.name }}</p>
                     <p>Computer played {{ computer_gesture.name }}</p>
                 {% endif %}
+
+                {% for flash_message in app.session.flashbag.get('error') %}
+                    <div class="flash-error">
+                        {{ flash_message }}
+                    </div>
+                {% endfor %}
+
                 <h2>{{ result_statement }}</h2>
                 <hr>
             </div>
@@ -147,6 +154,10 @@
     .metrics-con{
         width: 50%;
         float: right;
+    }
+
+    .flash-error{
+        color: red;
     }
 </style>
 {% endblock %}
