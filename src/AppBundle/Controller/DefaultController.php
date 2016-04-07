@@ -50,7 +50,8 @@ class DefaultController extends Controller
         }
 
         // METRICS
-        $metrics = ( new Metrics() )->get( $this->getDoctrine()->getManager()->getConnection() );
+        $om = $this->getDoctrine()->getManager();
+        $metrics = ( new Metrics($om) )->get();
         $response_array[ "metrics" ]    = $metrics;
 
 

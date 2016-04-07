@@ -27,17 +27,17 @@ class LoadGestureData extends AbstractFixture implements FixtureInterface
 
         $this->addReference('scissors-gesture', $scissorsGesture);
 
-        $lizardGesture = new Gesture();
-        $lizardGesture->setName('lizard');
-        $manager->persist($lizardGesture);
-
-        $this->addReference('lizard-gesture', $lizardGesture);
-
         $spockGesture = new Gesture();
         $spockGesture->setName('spock');
         $manager->persist($spockGesture);
 
         $this->addReference('spock-gesture', $spockGesture);
+
+        $lizardGesture = new Gesture();
+        $lizardGesture->setName('lizard');
+        $manager->persist($lizardGesture);
+
+        $this->addReference('lizard-gesture', $lizardGesture);
 
         $manager->flush();
     }

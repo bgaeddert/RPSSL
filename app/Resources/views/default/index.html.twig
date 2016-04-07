@@ -4,7 +4,7 @@
     <div id="wrapper">
         <div id="container">
             <div id="welcome">
-                <h1><span>Welcome to</span> Rock Paper Scissors Lizard Spock</h1>
+                <h1><span>Play</span> Rock Paper Scissors Spock Lizard </h1>
                 <hr>
             </div>
 
@@ -29,42 +29,7 @@
 
             <div id="metrics">
                 <h2 class="text-center">Metrics</h2>
-                <div id="player-metrics" class="metrics-con">
-                    <table class="metrics-table" border="1" width="90%">
-                        <thead>
-                        <tr>
-                            <td colspan="2">Player Metrics</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Wins</td>
-                            <td>{{ metrics.human_win_count }}</td>
-                        </tr>
-                        <tr>
-                            <td>Rock</td>
-                            <td>{{ metrics.human_rock_count }}</td>
-                        </tr>
-                        <tr>
-                            <td>Paper</td>
-                            <td>{{ metrics.human_paper_count }}</td>
-                        </tr>
-                        <tr>
-                            <td>Scissors</td>
-                            <td>{{ metrics.human_scissors_count }}</td>
-                        </tr>
-                        <tr>
-                            <td>Lizard</td>
-                            <td>{{ metrics.human_lizard_count }}</td>
-                        </tr>
-                        <tr>
-                            <td>Spock</td>
-                            <td>{{ metrics.human_spock_count }}</td>
-                        </tr>
 
-                        </tbody>
-                    </table>
-                </div>
 
                 <div id="computer-metrics" class="metrics-con">
                     <table class="metrics-table" border="1" width="90%">
@@ -98,6 +63,43 @@
                             <td>Spock</td>
                             <td>{{ metrics.comp_spock_count }}</td>
                         </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="player-metrics" class="metrics-con">
+                    <table class="metrics-table" border="1" width="90%">
+                        <thead>
+                        <tr>
+                            <td colspan="2">Player Metrics</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Wins</td>
+                            <td>{{ metrics.human_win_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Rock</td>
+                            <td>{{ metrics.human_rock_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Paper</td>
+                            <td>{{ metrics.human_paper_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Scissors</td>
+                            <td>{{ metrics.human_scissors_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Lizard</td>
+                            <td>{{ metrics.human_lizard_count }}</td>
+                        </tr>
+                        <tr>
+                            <td>Spock</td>
+                            <td>{{ metrics.human_spock_count }}</td>
+                        </tr>
+
                         </tbody>
                     </table>
                 </div>
