@@ -13,4 +13,9 @@ use Doctrine\ORM\EntityRepository;
 class RoundLogRepository extends EntityRepository
 {
 
+    public function save( RoundLog $round_log )
+    {
+        $this->getEntityManager()->persist( $round_log );
+        $this->getEntityManager()->flush();
+    }
 }
