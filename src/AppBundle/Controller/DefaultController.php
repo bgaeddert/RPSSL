@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Business\Game;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,36 +13,35 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction( Request $request )
     {
         // INPUT
         $human_gesture_id = intval( $request->request->get( 'gesture_id' ) );
 
-        // Get all Gestures from DataBase
-        $gesture_options = $this->getDoctrine()
-            ->getRepository( 'AppBundle:Gesture' )
-            ->findAll();
+        // Repositories
+        $gesture_repository = $this->getDoctrine()->getRepository( 'AppBundle:Gesture' );
+        $rule_repository    = $this->getDoctrine()->getRepository( 'AppBundle:Rule' );
 
+        // Get all Gestures from DataBase
+        $gesture_options = $gesture_repository->findAll();
+
+        // init load setting
         $response_array = [
-            "gesture_options" => $gesture_options,
-            "human_gesture" => null,
+            "gesture_options"  => $gesture_options,
+            "human_gesture"    => null,
             "computer_gesture" => null,
+            "result_statement" => 'Ready player one.',
         ];
 
-        if($human_gesture_id)
+        if ( $human_gesture_id )
         {
-            $human_gesture = $this->getDoctrine()
-                ->getRepository( 'AppBundle:Gesture' )
-                ->find( $human_gesture_id );
+            $game = ( new Game( $gesture_repository, $rule_repository ) )->play( $gesture_options, $human_gesture_id );
 
-            $response_array["human_gesture"] = $human_gesture;
-
-            $computer_gesture = $gesture_options[ array_rand( $gesture_options, 1 ) ];
-
-            $response_array["computer_gesture"] = $computer_gesture;
+            $response_array[ "human_gesture" ]    = $game->getHumanGesture();
+            $response_array[ "computer_gesture" ] = $game->getComputerGesture();
+            $response_array[ "result_statement" ] = $game->getResultStatement();
         }
 
-
-        return $this->render('default/index.html.twig',$response_array);
+        return $this->render( 'default/index.html.twig', $response_array );
     }
 }
