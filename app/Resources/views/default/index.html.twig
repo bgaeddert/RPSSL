@@ -15,7 +15,11 @@
 
             <div id="gesture-select">
                 <h2 class="text-center">Choose one</h2>
-                Buttons to choose gestures
+                <form action="/" method="post">
+                    {% for gesture in gestures %}
+                        <button type="submit" name="gesture_id" value="{{ gesture.id }}">{{ gesture.name|escape|capitalize }}</button>
+                    {% endfor %}
+                </form>
                 <hr>
             </div>
 
