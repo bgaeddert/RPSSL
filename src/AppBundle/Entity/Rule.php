@@ -14,15 +14,15 @@ class Rule
 {
     /**
      * @ORM\ManyToOne(targetEntity="Gesture")
-     * @ORM\JoinColumn(name="p1_gesture_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="gesture_a_id", referencedColumnName="id")
      */
-    private $p1_gesture;
+    private $gesture_a;
 
     /**
      * @ORM\ManyToOne(targetEntity="Gesture")
-     * @ORM\JoinColumn(name="p2_gesture_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="gesture_b_id", referencedColumnName="id")
      */
-    private $p2_gesture;
+    private $gesture_b;
 
     /**
      * @var integer
@@ -39,6 +39,7 @@ class Rule
      * @ORM\Column(name="description", type="string")
      */
     private $description;
+
 
     /**
      * Get id
@@ -74,48 +75,48 @@ class Rule
     }
 
     /**
-     * Set p1_gesture
+     * Set gesture_a
      *
-     * @param \AppBundle\Entity\Gesture $p1Gesture
+     * @param \AppBundle\Entity\Gesture $gestureA
      * @return Rule
      */
-    public function setP1Gesture(\AppBundle\Entity\Gesture $p1Gesture = null)
+    public function setGestureA(\AppBundle\Entity\Gesture $gestureA = null)
     {
-        $this->p1_gesture = $p1Gesture;
+        $this->gesture_a = $gestureA;
 
         return $this;
     }
 
     /**
-     * Get p1_gesture
+     * Get gesture_a
      *
      * @return \AppBundle\Entity\Gesture 
      */
-    public function getP1Gesture()
+    public function getGestureA()
     {
-        return $this->p1_gesture;
+        return $this->gesture_a;
     }
 
     /**
-     * Set p2_gesture
+     * Set gesture_b
      *
-     * @param \AppBundle\Entity\Gesture $p2Gesture
+     * @param \AppBundle\Entity\Gesture $gestureB
      * @return Rule
      */
-    public function setP2Gesture(\AppBundle\Entity\Gesture $p2Gesture = null)
+    public function setGestureB(\AppBundle\Entity\Gesture $gestureB = null)
     {
-        $this->p2_gesture = $p2Gesture;
+        $this->gesture_b = $gestureB;
 
         return $this;
     }
 
     /**
-     * Get p2_gesture
+     * Get gesture_b
      *
      * @return \AppBundle\Entity\Gesture 
      */
-    public function getP2Gesture()
+    public function getGestureB()
     {
-        return $this->p2_gesture;
+        return $this->gesture_b;
     }
 }
