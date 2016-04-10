@@ -87,8 +87,8 @@ class LoadRuleData extends AbstractFixture implements FixtureInterface
 
         // Spock smashes Scissors
         $rule = new Rule();
-        $rule->setGestureA($scissorsGesture);
-        $rule->setGestureB($rockGesture);
+        $rule->setGestureA($spockGesture);
+        $rule->setGestureB($scissorsGesture);
         $rule->setDescription('Spock smashes Scissors');
         $manager->persist($rule);
 
